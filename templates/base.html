@@ -1,0 +1,92 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timetable Scheduler</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/style.css' %}">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            background-color: #3498db;
+            padding: 10px;
+            text-align: left;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        nav ul li {
+            float: left;
+        }
+
+        nav ul li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        nav ul li a:hover {
+            background-color: #111;
+        }
+
+        .main {
+            margin-top: 60px; /* Adjust spacing */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main">
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'addinstructor' %}">Add Instructor</a></li>
+                <li><a href="{% url 'addroom' %}">Add Room </a></li>
+                <li><a href="{% url 'addmeetingtime' %}">Add Meeting time</a></li>
+                <li><a href="{% url 'addcourse' %}">Add Course</a></li>
+                <li><a href="{% url 'adddepartment' %}">Add department</a></li>
+                <li><a href="{% url 'addsection' %}">Add Section</a></li>
+            </ul>
+        </nav>
+
+        {% block content %}
+
+        {% endblock %}
+    </div>
+
+    <script type="text/javascript">
+        var checkList = document.getElementById('list1');
+        var items = document.getElementById('items');
+        checkList.getElementsByClassName('anchor')[0].onclick = function (evt) {
+            if (items.classList.contains('visible')) {
+                items.classList.remove('visible');
+                items.style.display = "none";
+            } else {
+                items.classList.add('visible');
+                items.style.display = "block";
+            }
+        }
+
+        items.onblur = function (evt) {
+            items.classList.remove('visible');
+        }
+    </script>
+
+</body>
+</html>
